@@ -1,0 +1,13 @@
+def calculate_average(list):
+  count =0
+  total = 0
+  for num in list:
+    total += num
+    count += 1
+  average = total / count
+  return average
+
+marksList = [70, 80, 90]
+print("Marks:",marksList,)
+average = calculate_average(marksList)
+print("Average Marks:", average)
