@@ -1,3 +1,4 @@
+
 while True:
   print("1. Add two numbers")
   print("2. Subtract two numbers")
@@ -5,13 +6,16 @@ while True:
 
   choice = int(input("Enter your choice: "))
 
-  num1 = int(input("Enter first number: "))
-  num2 = int(input("Enter second number: "))
+  
 
   if choice == 1:
+    num1 = int(input("Enter first number: "))
+    num2 = int(input("Enter second number: "))
     print("Result:", num1 + num2)
 
   elif choice == 2:
+    num1 = int(input("Enter first number: "))
+    snum2 = int(input("Enter second number: "))
     print("Result:", num1 - num2)
 
   elif choice == 3:
@@ -20,6 +24,7 @@ while True:
 
   else:
     print("Invalid choice.")
+
 
 
 
