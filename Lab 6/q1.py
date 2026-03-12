@@ -1,52 +1,43 @@
-#task 2
-goal = 20
-beam_width = 2
+# task1
 
-def heuristic(n):
-    return abs(goal - n)
+import random
 
-beam = [(1, [1])]
-visited = set([1])
+def f(x):
+    return -x**2 + 6*x
 
-level = 0
-found = False
+min_x = 0
+max_x = 6
 
-while beam and not found:
-    print("\nLevel", level)
-    new_states = []
+x = random.randint(min_x, max_x)
 
-    for state, path in beam:
-        print("Exploring:", state)
+print("Initial x:", x)
+print("f(x):", f(x))
 
-        children = [state + 2, state + 3, state * 2]
+while True:
+    neighbors = []
 
-        for child in children:
+    if x - 1 >= min_x:
+        neighbors.append(x - 1)
+    if x + 1 <= max_x:
+        neighbors.append(x + 1)
 
-            if child > goal or child in visited:
-                continue
+    best_neighbor = x
+    best_value = f(x)
 
-            visited.add(child)
-            new_path = path + [child]
+    for n in neighbors:
+        value = f(n)
+        print("Checking neighbor:", n, "f(x) =", value)
 
-            if child == goal:
-                print("\nGoal Reached!")
-                print("Path:", new_path)
-                found = True
-                break
+        if value > best_value:
+            best_neighbor = n
+            best_value = value
 
-            new_states.append((child, new_path))
-
-        if found:
-            break
-
-    if found:
+    if best_neighbor == x:
         break
 
-    new_states.sort(key=lambda x: heuristic(x[0]))
-    beam = new_states[:beam_width]
+    x = best_neighbor
+    print("Move to:", x, "f(x) =", f(x))
+    print()
 
-    print("Selected states:")
-    for state, _ in beam:
-        print(state, "h =", heuristic(state))
-
-    level += 1
+print("\nFinal Optimal x:", x)
+print("Maximum value:", f(x))
